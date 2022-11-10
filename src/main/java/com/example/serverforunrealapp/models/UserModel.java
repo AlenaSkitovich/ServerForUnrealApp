@@ -21,7 +21,9 @@ public class UserModel {
     @Column(name = "login")
     private String login;
 
-    @Column(name = "paswword")
+    @Column(name = "password")
     private String password;
 
+    @Column(name = "url")
+    private String url;
 }
