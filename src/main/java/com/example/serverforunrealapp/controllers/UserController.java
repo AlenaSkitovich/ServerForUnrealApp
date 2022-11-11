@@ -28,7 +28,7 @@ public class UserController {
         return userService.register(login, password, name, lastName);
     }
 
-    @PostMapping
+    @PostMapping("/login")
     public String login(@RequestParam String login,
                         @RequestParam String password) {
         return userService.login(login, password);
