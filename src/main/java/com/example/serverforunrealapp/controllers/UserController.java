@@ -3,10 +3,7 @@ package com.example.serverforunrealapp.controllers;
 import com.example.serverforunrealapp.models.UserModel;
 import com.example.serverforunrealapp.repos.UserRepo;
 import com.example.serverforunrealapp.servises.UserService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -33,4 +30,10 @@ public class UserController {
                         @RequestParam String password) {
         return userService.login(login, password);
     }
+
+    @GetMapping("/get")
+    public String getUser(){
+        return  userRepo.findAll().toString();
+    }
+    
 }
