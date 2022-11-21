@@ -12,6 +12,9 @@ public class ExpenseModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
+    @Column(name = "ex_name")
+    private String name;
+
     @Column(name = "sum")
     private double sum;
 

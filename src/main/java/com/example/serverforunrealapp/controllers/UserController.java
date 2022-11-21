@@ -18,11 +18,12 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public boolean register(@RequestParam String login,
+    public long register(@RequestParam String login,
                             @RequestParam String password,
                             @RequestParam String name,
-                            @RequestParam String lastName) {
-        return userService.register(login, password, name, lastName);
+                            @RequestParam String lastName,
+                            @RequestParam String url) {
+        return userService.register(login, password, name, lastName, url);
     }
 
     @PostMapping("/login")
@@ -35,5 +36,4 @@ public class UserController {
     public String getUser(){
         return  userRepo.findAll().toString();
     }
-    
 }

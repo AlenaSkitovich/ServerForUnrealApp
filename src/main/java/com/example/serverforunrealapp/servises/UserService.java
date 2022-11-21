@@ -15,20 +15,21 @@ public class UserService {
         this.userRepo = userRepo;
     }
 
-    public boolean register(String login,String password,
-                            String name,String lastName
+    public long register(String login,String password,
+                            String name,String lastName,String url
                             ){
         List<String> logins = userRepo.findLogins();
         if(logins.contains(login)){
-            return false;
+            return 0;
         }
         UserModel userModel = new UserModel();
         userModel.setName(name);
         userModel.setLastName(lastName);
         userModel.setPassword(password);
         userModel.setLogin(login);
+        userModel.setUrl(url);
         userRepo.save(userModel);
-        return true;
+        return userRepo.findUserModelByLogin(login).getId();
     }
     public String login(String login, String password) {
         UserModel userModel = null;
@@ -37,6 +38,7 @@ public class UserService {
             return "no user";
         } else if (userModel.getPassword().equals(password)) {
             return userModel.toString();
+            /*return "the login was completed successfully";*/
         }
         return "not correct password";
     }
