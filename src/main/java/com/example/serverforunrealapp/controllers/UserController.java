@@ -19,10 +19,10 @@ public class UserController {
 
     @PostMapping("/register")
     public long register(@RequestParam String login,
-                            @RequestParam String password,
-                            @RequestParam String name,
-                            @RequestParam String lastName,
-                            @RequestParam String url) {
+                         @RequestParam String password,
+                         @RequestParam String name,
+                         @RequestParam String lastName,
+                         @RequestParam String url) {
         return userService.register(login, password, name, lastName, url);
     }
 
@@ -33,7 +33,7 @@ public class UserController {
     }
 
     @GetMapping("/get")
-    public String getUser(){
-        return  userRepo.findAll().toString();
+    public String getUser() {
+        return userRepo.findAll().toString();
     }
 }
