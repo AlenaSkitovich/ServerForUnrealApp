@@ -31,6 +31,7 @@ public class UserService {
         userRepo.save(userModel);
         return userRepo.findUserModelByLogin(login).getId();
     }
+
     public String login(String login, String password) {
         UserModel userModel = null;
         userModel = userRepo.findUserModelByLogin(login);
@@ -38,7 +39,6 @@ public class UserService {
             return "no user";
         } else if (userModel.getPassword().equals(password)) {
             return userModel.toString();
-            /*return "the login was completed successfully";*/
         }
         return "not correct password";
     }
