@@ -2,6 +2,7 @@ package com.example.serverforunrealapp.servises;
 
 import com.example.serverforunrealapp.repos.UserRepo;
 import com.example.serverforunrealapp.models.UserModel;
+import com.google.gson.Gson;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -38,7 +39,9 @@ public class UserService {
         if (userModel == null) {
             return "no user";
         } else if (userModel.getPassword().equals(password)) {
-            return userModel.toString();
+            Gson gson = new Gson();
+            String json = gson.toJson(userModel);
+            return json;
         }
         return "not correct password";
     }
