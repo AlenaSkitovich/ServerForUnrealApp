@@ -23,12 +23,13 @@ public class ExpenseController {
 
     @PostMapping("/add")
     public boolean addExpense(@RequestParam double sum,
-                             @RequestParam long time,
-                             @RequestParam int day,
-                             @RequestParam int month,
-                             @RequestParam int year,
-                             @RequestParam String login) {
-        return expenseService.addExpense(sum, time, day, month, year, login);
+                              @RequestParam String name,
+                              @RequestParam long time,
+                              @RequestParam int day,
+                              @RequestParam int month,
+                              @RequestParam int year,
+                              @RequestParam String login) {
+        return expenseService.addExpense(sum, name, time, day, month, year, login);
     }
 
     @PostMapping("/delete")

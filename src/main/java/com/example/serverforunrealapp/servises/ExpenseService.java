@@ -18,11 +18,12 @@ public class ExpenseService {
         this.userRepo = userRepo;
     }
 
-    public boolean addExpense(double sum, long time,
+    public boolean addExpense(double sum, String name, long time,
                               int day, int month, int year, String login) {
         ExpenseModel expenseModel = new ExpenseModel();
         expenseModel.setUserModel(userRepo.findUserModelByLogin(login));
         expenseModel.setSum(sum);
+        expenseModel.setName(name);
         expenseModel.setTime(time);
         expenseModel.setDay(day);
         expenseModel.setMonth(month);
