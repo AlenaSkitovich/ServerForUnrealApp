@@ -1,5 +1,6 @@
 package com.example.serverforunrealapp.controllers;
 
+import com.example.serverforunrealapp.models.ExpenseModel;
 import com.example.serverforunrealapp.models.UserModel;
 import com.example.serverforunrealapp.repos.UserRepo;
 import com.example.serverforunrealapp.servises.UserService;
@@ -30,6 +31,16 @@ public class UserController {
     public String login(@RequestParam String login,
                         @RequestParam String password) {
         return userService.login(login, password);
+    }
+
+    @PostMapping("/editName")
+    public void editName(String name, String lastName, String login) {
+        userService.editName(name,lastName,login);
+    }
+
+    @PostMapping("/editPhoto")
+    public void editPhoto(String url, String login) {
+        userService.editPhoto(url,login);
     }
 
     @GetMapping("/get")

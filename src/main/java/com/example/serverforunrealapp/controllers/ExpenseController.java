@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/expense")
@@ -56,7 +57,13 @@ public class ExpenseController {
     }
 
     @GetMapping("/getById/{userId}")
-    public List<ExpenseModel> getAll() {
+    public List<ExpenseModel> getAll(@PathVariable long userId){
+        List<ExpenseModel> list = expenseRepo.findAll();
+        list = list.stream().filter(e -> e.getUserModel().getId()==userId).collect(Collectors.toList());
+        return list;
+    }
+    @GetMapping("/get")
+    public List<ExpenseModel> getAl(){
         return expenseRepo.findAll();
     }
 }
