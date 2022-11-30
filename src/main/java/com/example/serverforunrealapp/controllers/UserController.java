@@ -34,10 +34,14 @@ public class UserController {
     }
 
     @PostMapping("/editName")
-    public void editName(String name, String lastName, String login) {
-        userService.editName(name,lastName,login);
+    public void editName(String name, String login) {
+        userService.editName(name,login);
     }
 
+    @PostMapping("/editLastName")
+    public void editLastName(String lastName, String login) {
+        userService.editName(lastName,login);
+    }
     @PostMapping("/editPhoto")
     public void editPhoto(String url, String login) {
         userService.editPhoto(url,login);

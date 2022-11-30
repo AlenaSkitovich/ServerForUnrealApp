@@ -44,9 +44,14 @@ public class UserService {
         return "not correct password";
     }
 
-    public void editName(String name, String lastName, String login) {
+    public void editName(String name, String login) {
         UserModel userModel = userRepo.findUserModelByLogin(login);
         userModel.setName(name);
+        userRepo.save(userModel);
+    }
+
+    public void editLastName(String lastName, String login) {
+        UserModel userModel = userRepo.findUserModelByLogin(login);
         userModel.setLastName(lastName);
         userRepo.save(userModel);
     }
