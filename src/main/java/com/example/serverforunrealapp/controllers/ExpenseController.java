@@ -44,26 +44,43 @@ public class ExpenseController {
         expenseService.edit(sum, id, name);
     }
 
-    @PostMapping("/getMonthlyAmounts")
+    @GetMapping("/getMonthlyAmounts/{userId}")
     public String getSumByMonth(@RequestParam int month,
                                 @RequestParam long id) {
         return expenseService.getSumByMonth(month, id);
     }
 
-    @PostMapping("/getAnnualAmounts")
+    @GetMapping("/getAnnualAmounts/{userId}")
     public String getSumByYear(@RequestParam int year,
                                @RequestParam long id) {
         return expenseService.getSumByYear(year, id);
     }
 
-    @GetMapping("/getById/{userId}")
-    public List<ExpenseModel> getAll(@PathVariable long userId){
+    @GetMapping("/getDailyExp/{userId}/{year}/{month}/{day}")
+    public List<ExpenseModel> getAll(@PathVariable long userId,
+                                     @PathVariable int year,
+                                     @PathVariable int month,
+                                     @PathVariable int day) {
         List<ExpenseModel> list = expenseRepo.findAll();
-        list = list.stream().filter(e -> e.getUserModel().getId()==userId).collect(Collectors.toList());
+        list = list.stream()
+                .filter(e -> e.getUserModel().getId() == userId)
+                .filter(e -> e.getYear() == year)
+                .filter(e -> e.getMonth() == month)
+                .filter(e -> e.getDay() == day)
+                .collect(Collectors.toList());
+
         return list;
     }
+
+    @GetMapping("/getById/{userId}")
+    public List<ExpenseModel> getAll(@PathVariable long userId) {
+        List<ExpenseModel> list = expenseRepo.findAll();
+        list = list.stream().filter(e -> e.getUserModel().getId() == userId).collect(Collectors.toList());
+        return list;
+    }
+
     @GetMapping("/get")
-    public List<ExpenseModel> getAl(){
+    public List<ExpenseModel> getAl() {
         return expenseRepo.findAll();
     }
 }
